@@ -16,7 +16,7 @@ __all__ = ["track_always_by_multiprocessing"]
 def get_pos_list():
     ret = []
     try:
-        with open('videos/CarParkPos', 'rb') as f:
+        with open('resources/CarParkPos', 'rb') as f:
             posList = pickle.load(f)
     except:
         return []
@@ -51,7 +51,7 @@ def check_car_coordinate(img, posList):
 
 
 def track_always():
-    cap = cv2.VideoCapture('videos/carPark.mp4')
+    cap = cv2.VideoCapture('resources/carPark.mp4')
     posList = get_pos_list()
     start = time()
     while True:
