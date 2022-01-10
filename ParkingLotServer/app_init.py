@@ -1,4 +1,6 @@
 from flask import Flask, jsonify
+from sqlalchemy import create_engine, text
+
 from config import *
 
 
@@ -23,5 +25,7 @@ def create_app() -> Flask:
     """
     app = Flask(__name__)
     app = register_router(app)
+    database = create_engine(app.config['DB_URL'], encoding='utf-8', max_overflow=0)
+    app.database = database
 
     return app
