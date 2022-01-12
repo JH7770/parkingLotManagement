@@ -1,11 +1,9 @@
-from typing import List, Tuple
-
 import cv2
 import pickle
-import numpy as np
 from time import sleep, time
 from operator import itemgetter
-
+from sqlalchemy import text
+from config import *
 width, height = 107, 48
 
 
@@ -37,8 +35,6 @@ def check_car_coordinate(img, posList):
         # cv2.imshow(str(i), img_trim)
 
         mean = cv2.mean(img_trim)[0]
-        if i == 13:
-            print(i, mean)
         if mean > 25:
             isCar[i] = True
     return isCar
@@ -60,9 +56,12 @@ def track_always_and_save_status():
     자동차의 좌표 확인 후 상태 저장
     :return:
     """
-    cap = cv2.VideoCapture('resources/carPark.mp4') # get video file
-    posList = get_pos_list() # car position (coordinates)
+    cap = cv2.VideoCapture('resources/carPark.mp4')  # get video file
+    posList = get_pos_list()  # car position (coordinates)
     start = time()
+
+    from DBHandler import DBHandler
+    db = DBHandler()
     while True:
         # Get image frame
         success, ori = cap.read()
@@ -89,8 +88,17 @@ def track_always_and_save_status():
 
         cv2.imshow("ori", draw_image)
         cv2.imshow("img", img)
+
+        cv2.imwrite("./resources/current_parking_lot.jpg", draw_image)
         key = cv2.waitKey(1)
         if key == ord('r'):
             break
 
+        for i, b in enumerate(isCar):
+            query = """
+                UPDATE lot_status
+                SET isCar = %d
+                WHERE id=%d
+            """%(b, i)
+            db.update(query)
         # sleep(1)
