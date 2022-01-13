@@ -3,7 +3,7 @@
 
 
 ### ParkingLotMonitoringServer
-주차장 상태 파악을 위해서 실시간 영상을 이용한다면 더욱 좋겠지만, 주차장 영상으로 대체하였습니다. ([영상출처](https://www.computervision.zone/courses/parking-space-counter/)) <br>
+주차장 상태 파악을 위해서 실시간 영상을 이용한다면 더욱 좋겠지만, 주차장 영상으로 대체하였습니다.  <br>
 해당 영상을 1초 마다 읽고 분석하여 주차장의 차량 여부와 현재 이미지를 저장합니다.
 ![current_parking_lot](https://user-images.githubusercontent.com/62638100/149156534-7cd7ed05-df8d-4acb-abcc-138c8f1064a3.jpg)
 
