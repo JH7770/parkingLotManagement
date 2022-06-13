@@ -1,4 +1,4 @@
-## 주차장 관리 프로그램(Side Project)
+## 주차장 인식 서비스
 <img src="https://user-images.githubusercontent.com/62638100/149156534-7cd7ed05-df8d-4acb-abcc-138c8f1064a3.jpg" width=600>
 
 
